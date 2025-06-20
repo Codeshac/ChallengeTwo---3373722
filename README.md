@@ -1,18 +1,31 @@
 # ChallengeTwo---3373722
-class SearchSuggestionSystem:
-    def __init__(self, products):
-        self.products = sorted(products)
-    
-    def getSuggestions(self, searchWord):
-        suggestions = []
-        prefix = ""
-        for char in searchWord:
-            prefix += char
-            matched_products = []
-            for product in self.products:
-                if product.startswith(prefix):
-                    matched_products.append(product)
-                    if len(matched_products) == 3:
-                        break
-            suggestions.append(matched_products)
-        return suggestions
+class SearchSuggestionSystem {
+    constructor(products) {
+        this.products = products.sort();
+    }
+
+    getSuggestions(searchWord) {
+        const suggestions = [];
+        let prefix = '';
+        for (const char of searchWord) {
+            prefix += char;
+            const matchedProducts = [];
+            for (const product of this.products) {
+                if (product.startsWith(prefix)) {
+                    matchedProducts.push(product);
+                    if (matchedProducts.length === 3) {
+                        break;
+                    }
+                }
+            }
+            suggestions.push(matchedProducts);
+        }
+        return suggestions;
+    }
+}
+
+// Example usage:
+const products = ["mobile", "mouse", "moneypot", "monitor", "mousepad"];
+const searchWord = "mouse";
+const suggestionSystem = new SearchSuggestionSystem(products);
+console.log(suggestionSystem.getSuggestions(searchWord));
